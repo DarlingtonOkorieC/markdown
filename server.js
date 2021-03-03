@@ -18,8 +18,23 @@ app.use(methodOverride('_method'))
 
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/blog',
-{ useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect('mongodb+srv://javascriptboss:javascript123@cluster0.5zq0v.mongodb.net/blog?retryWrites=true&w=majority', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        })
+
+        console.log(`MongoDB connected to ${conn.connection.host}`);
+    } catch (error) {
+        console.error(error)
+        process.exit(1)
+        
+    }
+}
+
+connectDB()
 
 
 const articleRouter = require('./routes/articles')
