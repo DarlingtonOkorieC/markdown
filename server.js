@@ -37,8 +37,6 @@ const connectDB = async () => {
 connectDB()
 
 
-
-
 const articleRouter = require('./routes/articles')
 
 app.set('view engine', 'ejs')
